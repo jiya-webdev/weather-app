@@ -1,22 +1,26 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg,#fddb92,#d1fdff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-  transition: background 1s ease; /* smooth change */
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(to top,#6dd5fa,#2980b9);
+    transition:background 1s ease;
+    position:relative;
 }
 
-.container {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
-  padding: 30px;
-  border-radius: 15px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+.container{
+    position:relative;
+    z-index:10;
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:15px;
+    width:320px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,.5);
 }
 
 h2 { margin-bottom: 15px; }
@@ -46,9 +50,10 @@ button:hover {
   box-shadow: 0 0 15px #0ea5e9;
 }
 
-#weatherResult {
-  margin-top: 20px;
-  animation: fade 0.5s ease;
+#weatherResult{
+    display:none;
+    margin-top:20px;
+    animation:fade .5s ease;
 }
 
 #weatherResult img {
@@ -59,4 +64,206 @@ button:hover {
 @keyframes fade {
   from {opacity:0; transform: translateY(10px);}
   to {opacity:1; transform: translateY(0);}
+}
+
+.sky{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    top:0;
+    left:0;
+    z-index:0;
+}
+
+.cloud{
+    position:absolute;
+    background:#fff;
+    border-radius:50px;
+    opacity:.8;
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+}
+
+.cloud1{
+    width:180px;
+    height:60px;
+    top:15%;
+    left:-250px;
+    animation:moveCloud 45s linear infinite;
+}
+
+.cloud1::before{
+    width:70px;
+    height:70px;
+    top:-30px;
+    left:25px;
+}
+
+.cloud1::after{
+    width:90px;
+    height:90px;
+    top:-40px;
+    right:20px;
+}
+
+.cloud2{
+    width:220px;
+    height:70px;
+    top:40%;
+    left:-300px;
+    animation:moveCloud 60s linear infinite;
+    animation-delay:-20s;
+}
+
+.cloud2::before{
+    width:90px;
+    height:90px;
+    top:-35px;
+    left:30px;
+}
+
+.cloud2::after{
+    width:110px;
+    height:110px;
+    top:-45px;
+    right:25px;
+}
+
+.cloud3{
+    width:160px;
+    height:55px;
+    top:70%;
+    left:-220px;
+    animation:moveCloud 35s linear infinite;
+    animation-delay:-10s;
+}
+
+.cloud3::before{
+    width:65px;
+    height:65px;
+    top:-25px;
+    left:20px;
+}
+
+.cloud3::after{
+    width:85px;
+    height:85px;
+    top:-35px;
+    right:20px;
+}
+
+@keyframes moveCloud{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(calc(100vw + 400px));
+    }
+}
+
+.birds{
+    position:absolute;
+    top:90px;
+    left:-300px;
+    width:100%;
+    height:200px;
+    animation:flyBirds 18s linear infinite;
+    z-index:3;
+    pointer-events:none;
+}
+
+.bird{
+    position:absolute;
+    width:35px;
+    height:25px;
+}
+
+.bird::before,
+.bird::after{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-top:3px solid #222;
+    border-radius:50%;
+    animation:flap .5s ease-in-out infinite alternate;
+}
+
+.bird::before{
+    left:0;
+    transform-origin:right center;
+    transform:rotate(-20deg);
+}
+
+.bird::after{
+    right:0;
+    transform-origin:left center;
+    transform:rotate(20deg);
+}
+
+@keyframes flap{
+    from{
+        transform:rotate(-25deg);
+    }
+    to{
+        transform:rotate(25deg);
+    }
+}
+
+.bird1{
+    top:20px;
+    left:0;
+    transform:scale(1);
+}
+
+.bird2{
+    top:70px;
+    left:80px;
+    transform:scale(.8);
+}
+
+.bird3{
+    top:35px;
+    left:170px;
+    transform:scale(.6);
+}
+
+.bird4{
+    top:90px;
+    left:250px;
+    transform:scale(.9);
+}
+
+.bird5{
+    top:10px;
+    left:340px;
+    transform:scale(.7);
+}
+
+@keyframes flyBirds{
+    from{
+        transform:translateX(-350px);
+    }
+    to{
+        transform:translateX(calc(100vw + 500px));
+    }
+}
+
+.sun{
+    position:absolute;
+    top:60px;
+    right:80px;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:radial-gradient(circle,#fff7b2,#ffd54f,#ff9800);
+    box-shadow:0 0 50px #ffd54f;
+    z-index:1;
 }
